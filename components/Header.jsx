@@ -2,6 +2,8 @@
 
 import React from 'react'
 import Link from 'next/link';
+import logo from "@/assets/images/logo.svg"
+import Image from 'next/image';
 import { FaUser, FaSignInAlt, FaSignOutAlt, FaBuilding } from 'react-icons/fa';
 
 
@@ -16,7 +18,12 @@ const Header = () => {
         <div className='flex h-16 items-center justify-between'>
           <div className='flex items-center'>
             <Link href='/'>
-              BK
+              <Image 
+                className='h-12 w-12'
+                src={logo}
+                alt="logo"
+                priority={true}
+              />
             </Link>
             <div className='hidden md:block'>
               <div className='ml-10 flex items-baseline space-x-4'>
