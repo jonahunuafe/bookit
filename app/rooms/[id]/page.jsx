@@ -1,4 +1,5 @@
 import Heading from "@/components/Heading";
+import BookingForm from "@/components/BookingForm";
 import rooms from "@/data/rooms.json";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -59,6 +60,8 @@ const RoomPage = ({ params }) => {
               </ul>
             </div>
           </div>
+
+          <BookingForm room={room} />
         </div>
       </>
    );
