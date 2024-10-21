@@ -10,12 +10,12 @@ async function getAllRooms() {
     
     // Fetch rooms
     const { documents: rooms } = await databases.listDocuments(
-      process.env.NEXT_PUBLIC_APPRITE_DATABASE,
-      process.env.NEXT_PUBLIC_APPRITE_COLLECTION_ROOMS
+      process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
+      process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS
     );
 
     // Revalidate the cache for this path
-    revalidatePath("/", "layout");
+    revalidatePath("/");
 
     return rooms;
   } catch(error) {
@@ -23,3 +23,5 @@ async function getAllRooms() {
     redirect("/error");
   }
 }
+
+export default getAllRooms;
