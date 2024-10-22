@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import logo from "@/assets/images/logo.svg"
 import Image from 'next/image';
@@ -8,9 +8,22 @@ import { FaUser, FaSignInAlt, FaSignOutAlt, FaBuilding } from 'react-icons/fa';
 import destroySession from '@/app/actions/destroySession';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import checkAuth from '@/app/actions/checkAuth';
 
 const Header = () => {
   const router = useRouter();
+
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(() => {
+    const fetchAuthStatus = async () => {
+      const result = await checkAuth();
+      setIsAuthenticated(result.iAuthenticated);
+
+    }
+
+    fetchAuthStatus();
+  }, [])
 
   const handleLogout = async () => {
     const { success, error } = await destroySession();
