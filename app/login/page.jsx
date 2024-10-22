@@ -3,14 +3,21 @@
 import Link from "next/link";
 import createSession from "../actions/createSession";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [state, formAction] = useFormState(createSession, {});
 
+  const router = useRouter();
+
   useEffect(() => {
-    if(state.error) console.log(state.error)
-    
+    if(state.error) toast.error(state.error);
+    if(state.success) {
+      toast.success("Logged in successfully");
+      router.push("/");
+    }
   }, [state])
 
   return ( 
@@ -34,7 +41,7 @@ const LoginPage = () => {
               name='email'
               className='border rounded w-full py-2 px-3'
               autoComplete='email'
-              // required
+              required
             />
           </div>
 
@@ -51,7 +58,7 @@ const LoginPage = () => {
               name='password'
               className='border rounded w-full py-2 px-3'
               autoComplete='password'
-              // required
+              required
             />
           </div>
 
