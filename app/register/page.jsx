@@ -1,6 +1,17 @@
+"use client";
+
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import createUser from "@/app/actions/createUser";
 import Link from "next/link";
 
 const RegisterPage = () => {
+  const [state, formAction] = useFormState(createUser, {});
+
+  const
+
   return ( 
     <div className='flex items-center justify-center'>
       <div className='bg-white shadow-lg rounded-lg p-6 w-full max-w-sm mt-20'>
