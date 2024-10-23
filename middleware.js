@@ -14,7 +14,7 @@ export async function middleware(request) {
 
 // Limiting middleware to run only on the bookings page
 export const config = {
-  matcher: ["/bookings"]
+  matcher: ["/bookings", "/rooms/add", "/rooms/my"]
 }
 
 
