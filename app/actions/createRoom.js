@@ -25,7 +25,7 @@ async function createRoom(previousState, formData) {
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS,
       ID.unique(),
       {
-        use_id: user.id,
+        user_id: user.id,
         name: formData.get("name"),
         description: formData.get("description"),
         sqft: formData.get("sqft"),
