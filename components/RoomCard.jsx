@@ -7,9 +7,7 @@ const RoomCard = ({ room }) => {
   const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT;
 
   // Create the image url
-  const imageUrl = `
-    https://cloud.appwrite.io/v1/storage/buckets/${bucketId}/files/${room.image}/view?project=${projectId}
-  `;
+  const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketId}/files/${room.image}/view?project=${projectId}`;
 
   const imageSrc = room.image ? imageUrl : "/images/no-image.jpg";
 

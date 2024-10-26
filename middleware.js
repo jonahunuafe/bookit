@@ -12,7 +12,7 @@ export async function middleware(request) {
   return NextResponse.next();
 }
 
-// Limiting middleware to run only on the bookings page
+// Limiting middleware to run only on the following page
 export const config = {
   matcher: ["/bookings", "/rooms/add", "/rooms/my"]
 }
