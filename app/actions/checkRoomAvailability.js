@@ -6,6 +6,16 @@ import { Query } from 'node-appwrite';
 import { redirect } from 'next/navigation';
 import { DateTime } from "luxon";
 
+// Convert a date string to a luxon DateTime object in UTC
+function toUTCDateTime(dateString) {
+  return DateTime.fromISO(dateString, { zone: "utc" }).toUTC();
+}
+
+// Check for overlapping date ranges
+function dateRangesOverlap(checkInA, checkOutA, checkInB, checkOutB) {
+  return checkInA < checkOutB && checkOutA > checkInB;
+}
+
 async function checkRoomAvailability(roomId, checkIn, checkOut) {
   const sessionCookie = cookies().get('appwrite-session');
   if (!sessionCookie) {
@@ -23,11 +33,27 @@ async function checkRoomAvailability(roomId, checkIn, checkOut) {
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_BOOKINGS,
       [Query.equal('room_id', roomId)]
     );
+
+    const checkInDateTime = toUTCDateTime(checkIn);
+    const checkOutDateTime = toUTCDateTime(checkOut);
     
     // Loop over bookings and check for overlap
     for(const booking of bookings) {
-      const bookingCheckInDate = 
-    }
+      const bookingCheckInDateTime = toUTCDateTime(booking.check_in);
+      const bookingCheckOutDateTime = toUTCDateTime(booking.check_out);
+
+      if(dateRangesOverlap(
+        checkInDateTime,
+        checkOutDateTime,
+        bookingCheckInDateTime,
+        bookingCheckOutDateTime
+      )) {
+        return false;  //Overlap found, do not book
+      }
+    } 
+
+    // No overlap found, continue to book
+    return true;
   } catch (error) {
     console.log("Failed to check room availability", error);
     return {
