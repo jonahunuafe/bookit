@@ -1,4 +1,32 @@
+import Link from "next/link";
+
 const BookedRoomCard = ({ booking }) => {
+  const { room_id: room } = booking;
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    // Get month
+    const options = { month: "short" }
+    const month = date.toLocaleDateString("en-US", options, {timeZone: "UTC"});
+
+    // Get day
+    const day = date.getUTCDate();
+
+    // Format time in UTC 12-hour
+    const timeOptions = {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+      timeZone: "UTC"
+    }
+
+    const time = date.toLocaleDateString("en-US", timeOptions);
+
+    // Final formatted string
+    return `${month} ${day} at ${time}`
+  }
+
   return ( 
     <div className='bg-white shadow rounded-lg p-4 mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center'>
       <div>
@@ -17,7 +45,7 @@ const BookedRoomCard = ({ booking }) => {
         >
           View Room
         </Link>
-        <CancelBookingButton bookingId={booking.$id} />
+        {/* <CancelBookingButton bookingId={booking.$id} /> */}
       </div>
     </div>
    );
