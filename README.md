@@ -25,6 +25,8 @@ log in to have access to other pages in the application.
 
 **Booking Page**: Shows all the rooms that have been booked. No single room can be booked within the same time frame. Attempting to do that shows an error message.
 
+**Signout Page**: Upon completing a particular task, users can sign out and as well log in again when necessary.
+
 ## Tech Stack
 - Next.js
 - Appwrite
