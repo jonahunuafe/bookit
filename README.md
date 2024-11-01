@@ -19,7 +19,7 @@ An interactive meeting room booking application that allows organizations and co
 **Log in a User**: Users can go to the log in page, fill in their credentials used in registering and then
 log in to have access to other pages in the application.
 
-**Add Room Page**: Users can add a room that can be booked within the time frame stipulated.
+**Add Room Page**: Allows users to add a room which prospective organizations or companies can book.
 
 **My Room Page**: Shows all the rooms a particular user adds. Clicking a particular room displays the *view* and *delete* buttons. Users can only delete a room that they add. Upon clicking the delete button, a confirmation message pops up asking either to delete or cancel.
 
